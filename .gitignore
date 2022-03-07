@@ -3,5 +3,3 @@
 .Rhistory
 *.R
 *.ipynb
-*.feather
-*/*.feather
