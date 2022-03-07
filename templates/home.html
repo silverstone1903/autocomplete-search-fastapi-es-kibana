@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- https://github.com/simonw/24ways-datasette/blob/master/index.html -->
+
+<head>
+    <meta charset="utf-8">
+    <title>Türkçe Film Arama Motoru</title>
+    <style>
+        body {
+            font-family: helvetica, sans-serif;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>Film Arama Motoru</h1>
+
+        <form>
+            <p><input id="searchbox" type="Film adını giriniz" placeholder="Film Adı" style="width: 60%"></p>
+        </form>
+        <div id="results"></div>
+
+        <script>
+            const searchbox = document.getElementById("searchbox");
+            console.log(searchbox);
+            let requestInFlight = null;
+
+            searchbox.onkeyup = debounce(() => {
+                const q = searchbox.value;
+                const url = (
+                    "http://localhost:8000/match?term=" + encodeURIComponent(q)
+                );
+                let currentRequest = {};
+                requestInFlight = currentRequest;
+                fetch(url).then(r => r.json()).then(d => {
+                    if (requestInFlight !== currentRequest) {
+                        return;
+                    }
+                    let results = d.map(r => `
+                <div class="result">
+                    
+                    <h3>${r}</h3>
+      
+    `).join("");
+                    document.getElementById("results").innerHTML = results;
+                });
+            }, 100);
+
+            function debounce(func, wait, immediate) {
+                let timeout;
+                return function () {
+                    let context = this, args = arguments;
+                    let later = () => {
+                        timeout = null;
+                        if (!immediate) func.apply(context, args);
+                    };
+                    let callNow = immediate && !timeout;
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                    if (callNow) func.apply(context, args);
+                };
+            };
+
+            const highlight = (s) => htmlEscape(s).replace(
+                /b4de2a49c8/g, '<b>'
+            ).replace(
+                /8c94a2ed4b/g, '</b>'
+            );
+
+            const htmlEscape = (s) => s.replace(
+                /&/g, '&amp;'
+            ).replace(
+                />/g, '&gt;'
+            ).replace(
+                /</g, '&lt;'
+            ).replace(
+                /"/g, '&quot;'
+            ).replace(
+                /'/g, '&#039;'
+            );
+        </script>
+    </center>
+</body>
+
+</html>
