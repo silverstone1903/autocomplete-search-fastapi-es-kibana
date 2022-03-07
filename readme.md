@@ -4,7 +4,7 @@
 
 <p style="text-align:center">
 <img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" width="200" > 
-<img src="https://plugins.jetbrains.com/files/16111/151977/icon/pluginIcon.png" width="100">
+<img src="https://www.smile.eu/sites/default/files/styles/picture_news_technology/public/2017-08/elastic.png" width="100">
 <img src="https://www.bujarra.com/wp-content/uploads/2018/11/kibana0.jpg" width="100" >
 <img src="https://devnot.com/wp-content/uploads/2017/09/docker-compose.jpg" width="200" >
 
