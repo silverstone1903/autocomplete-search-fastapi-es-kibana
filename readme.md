@@ -11,10 +11,11 @@
 </p>
 <br>
 <br> 
-<center>
 
-![](https://im2.ezgif.com/tmp/ezgif-2-d2bcaa85eb.gif)
-</center>
+<p>
+<p style="text-align:center">
+<img src="assets/search.gif" > 
+</p>
 
 Code contains a template for using FastAPI backend with Elasticsearch & Kibana.
 
